@@ -1,0 +1,199 @@
+﻿<Window x:Class="First_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:First_WPF"
+        mc:Ignorable="d"
+        Title="First Project" Height="800" Width="400">
+    <!--
+     StackPanel: حاوية لترتيب العناصر داخل واجهة المستخدم.
+     الوظيفة: ترتيب العناصر بشكل عمودي أو أفقي.
+    الخصائص المهمة:
+    - Orientation: تحدد الاتجاه Vertical أو Horizontal
+    - Background: لون خلفية الـ StackPanel
+    - Margin: المسافة حول الـ StackPanel
+    - Padding: المسافة بين حدود الـ StackPanel ومحتوياته
+    - HorizontalAlignment: المحاذاة أفقياً
+    - VerticalAlignment: المحاذاة عمودياً
+    -->
+    <Border Padding="10">
+        <StackPanel >
+
+            <!--
+           Grid: حاوية لتنظيم العناصر في صفوف وأعمدة
+           الوظيفة: ترتيب العناصر بشكل شبكي دقيق
+        -->
+            <Grid>
+                <!-- تعريف الاعمدة -->
+                <Grid.ColumnDefinitions>
+                    <!--
+                زاى مافى ColimnDefinition فى RowDefinition وليها نفس اللخصائص
+         ColumnDefinition: تحدد عمود داخل الـ Grid
+          الخصائص المهمة:
+         - Width: تحدد عرض العمود
+         - "*" : العمود ياخد جزء نسبي من المساحة المتاحة
+         - "2*" : العمود ياخد ضعف المساحة بالنسبة للأعمدة اللي عليها "*"
+         - "Auto" : العمود ياخد المساحة المطلوبة حسب محتواه
+         - رقم بالبيكسل (مثلاً "100") : العمود له عرض ثابت
+         -->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--كدا انا بقول خلى ال ال الزرار ف ال عمود الاول -->
+                <!-- 
+                x:Name:
+                - بيدّي اسم مميز للعنصر جوه XAML
+                - الاسم ده بيسمحلي أوصل للعنصر من الكود (C#)
+                مثال: <TextBox x:Name="MyTextBox"/>
+                -->
+
+                <!-- 
+                Click="MethodName":
+                - بيربط حدث الضغط (Click) بالميثود اللي في الكود
+                - لما أضغط على الزرار، الميثود اللي اسمه MethodName هيتنفذ
+                مثال: <Button Content="Apply" Click="Applybutton_Click"/>
+                -->
+
+                <Button x:Name="Applybutton" Click="Applybutton_Click" Margin="0 0 10 0 " Grid.Column="0" Content="Apply"/>
+                <Button x:Name="ResetButton" Click="ResetButton_Click"  Grid.Column="1" Content="Reset"/>
+                <Button  Margin="10 0 0 0 " Grid.Column="2" Content="Refresh"/>
+            </Grid>
+            <!--
+              TextBlock: عنصر لعرض نصوص غير قابلة للتحرير في واجهة المستخدم
+              الوظيفة: عرض نص بسيط أو متعدد الأسطر
+              الخصائص المهمة:
+                - Text: النص الذي سيظهر داخل TextBlock
+                - FontSize: حجم الخط
+                - Foreground: لون النص
+                - TextWrapping: التحكم في طريقة لف النص إذا كان طويل
+                - TextAlignment: محاذاة النص (Left, Center, Right, Justify)
+                - Margin: المسافة حول الـ TextBlock
+            -->
+            <TextBlock Margin=" 0 15 " Text="Properties" FontSize="15" FontWeight="Bold"/>
+            <TextBlock  FontSize="15" Text="Description"/>
+            <!--
+              TextBox: عنصر يسمح للمستخدم بإدخال نصوص أو تعديلها
+              الوظيفة: إدخال بيانات من المستخدم، سواء نص واحد أو عدة أسطر
+              الخصائص المهمة:
+                - Text: النص الموجود داخل TextBox (يمكن قراءته أو تغييره برمجياً)
+                - Width / Height: عرض وارتفاع الـ TextBox
+                - FontSize: حجم الخط داخل الـ TextBox
+                - Foreground: لون النص
+                - Background: لون خلفية الـ TextBox
+                - TextWrapping: طريقة لف النصوص الطويلة (Wrap أو NoWrap)
+                - AcceptsReturn: true إذا عايز تسمح بسطر جديد داخل TextBox
+                - Margin: المسافة حول الـ TextBox
+             -->
+            <TextBox  x:Name="DescriptionText" Padding="2"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Status"/>
+                <TextBox Grid.Column="0" IsReadOnly="True" Background="#eee"  Margin="0 20 0 0"/>
+
+                <TextBlock Grid.Column="1" Text="Revision" Margin="10 0 0 0"/>
+                <TextBox  Grid.Column="1" IsReadOnly="True" Background="#eee" Padding="2" Margin="10 20 0 0"/>
+            </Grid>
+
+
+            <TextBlock  Text="Part Number" />
+            <TextBox  IsReadOnly="True" Background="#eee" Padding="2"/>
+
+
+            <TextBlock Margin=" 0 15 "  Text="Raw material" FontSize="15" FontWeight="Bold"/>
+            <TextBlock  FontSize="15" Text="Material"/>
+            <!--
+              ComboBox: عنصر يسمح للمستخدم باختيار قيمة من قائمة منسدلة
+              الوظيفة: عرض قائمة من الخيارات للمستخدم مع إمكانية اختيار عنصر واحد
+              الخصائص المهمة:
+            - Padding: المسافة داخل ComboBox بين حدود العنصر والنص
+            - Width / Height: عرض وارتفاع الـ ComboBox
+            - Items: العناصر اللي هتظهر في القائمة
+            - SelectedIndex: الرقم التسلسلي للعنصر المحدد (0 للبداية)
+            - SelectedItem: العنصر المحدد نفسه
+            -->
+            <ComboBox Padding="2"/>
+
+
+
+            <TextBlock Margin=" 0 15 " Text="Manufacturing Information" FontSize="15" FontWeight="Bold"/>
+            <TextBlock   Text="Work Centers"/>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition  Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"  />
+                    <RowDefinition Height="*"  />
+                    <RowDefinition Height="*"  />
+                    <RowDefinition Height="*"  />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="WeldCheckBocx" Content="Weld" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="AssemblyCheckBocx" Content="Assembly" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="PlasmaCheckBocx" Content="Plasma" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="LaserCheckBocx" Content="Laser" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="PurchaseCheckBocx" Content="Purchase" />
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="LatheCheckBocx" Content="Lathe" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="DrillCheckBocx" Content="Drill" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="FoldCheckBocx" Content="Fold" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="RollCheckBocx" Content="Roll" />
+                    <CheckBox Checked="CheckBocx_Checked" x:Name="SawCheckBocx" Content="Saw" />
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Length"/>
+            <TextBox x:Name="LengthText" Padding="2" Background="#eee" />
+
+            <TextBlock Text="Mass"/>
+            <TextBox Padding="2" Background="#eee" IsReadOnly="True" />
+
+            <TextBlock Text="Finish"/>
+            <ComboBox SelectedIndex="0" Padding="2" > 
+                <!--this selected to selecte a defult value-->
+                <ComboBoxItem>Painted</ComboBoxItem>
+                <ComboBoxItem>Not Painted</ComboBoxItem>
+            </ComboBox>
+
+
+            <TextBlock Text="Purchase information"/>
+            <ComboBox SelectedIndex="0" Padding="2" >
+                <!--this selected to selecte a defult value-->
+                <ComboBoxItem>Rubber</ComboBoxItem>
+                <ComboBoxItem>Not Rubber</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Supplier name "/>
+            <TextBox Padding="2"  />
+
+            <TextBlock Text="Supplier Code "/>
+            <TextBox Padding="2"  />
+
+
+            <TextBlock Text="Supplier Code "/>
+            <TextBox Padding="2"  />
+
+
+            <TextBlock  Text="Additional Info" FontSize="15" FontWeight="Bold"/>
+            <TextBlock  FontSize="15" Text="Note"/>
+            <TextBox Padding="2"/>
+        </StackPanel>
+    </Border>
+</Window>
